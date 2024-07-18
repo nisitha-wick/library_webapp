@@ -7,6 +7,7 @@ const routes = [{
     name: 'books.index',
     component: bookIndex
 }]
+
 const router = createRouter({
     history: createWebHistory(),
     routes
