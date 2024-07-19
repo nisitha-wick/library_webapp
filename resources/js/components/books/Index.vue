@@ -1,14 +1,34 @@
 <template>
     <div class="header">
         <h1>Online Library</h1>
-        <h2>Where all your books needs are met.</h2>
+        <h2>Where all your book needs are met.</h2>
     </div>
 
     <div class="InputContainer">
         <input placeholder="Search by Title" id="input" class="input" name="text">
     </div>
 
-    <div class="product-grid">
+    <!-- <div class="container">
+        <table class="clean-table">
+            <tr>
+                <th>Book ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Genre</th>
+                <th>Price</th>
+            </tr>
+            <tr>
+                <td>000</td>
+                <td>Game of Thrones</td>
+                <td>Description</td>
+                <td>Medieval</td>
+                <td>Rs.1000</td>
+            </tr>
+        </table>
+    </div> -->
+
+
+    <!-- <div class="product-grid">
         <div class="product-item">
             <img src="\public\book imgs\lotr.jpg">
             <h3>The Lord of the Rings</h3>
@@ -50,5 +70,7 @@
             <p>Rs.2000.00</p>
             <button>Borrow</button>
         </div>
-    </div>
+    </div> -->
+
+
 </template>
