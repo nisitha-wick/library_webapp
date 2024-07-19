@@ -1,11 +1,41 @@
 <template>
     <div>
+        <div class="header">
+        <h1>Online Library</h1>
+        <h2>Where all your book needs are met.</h2>
+    </div>
+
       <h1>Book List</h1>
-      <ul>
-        <li v-for="book in books" :key="book.id">
-          {{ book.title }} - {{ book.genre }} - ${{ book.price }}
-        </li>
-      </ul>
+      <div class="InputContainer">
+        <input placeholder="Search by Title" id="input" class="input" name="text">
+      </div>
+      <div class="container">
+        <table class="clean-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Genre</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-if="books.length === 0">
+                <td colspan="3">No books available</td>
+            </tr>
+            <tr v-for="book in books" :key="book.id">
+                <td>{{ book.id }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.description }}</td>
+                <td>{{ book.genre }}</td>
+                <td>{{ book.price }}</td>
+                <td><button>Borrow</button></td>
+            </tr>
+        </tbody>
+      </table>
+      </div>
     </div>
   </template>
   
@@ -25,7 +55,7 @@
       fetchBooks() {
         axios.get('http://127.0.0.1:8000/books')
           .then(response => {
-            this.books = response.data;
+            this.books = response.data.data;
           })
           .catch(error => {
             console.error('Error fetching books:', error);

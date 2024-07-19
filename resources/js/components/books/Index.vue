@@ -1,12 +1,5 @@
 <template>
-    <div class="header">
-        <h1>Online Library</h1>
-        <h2>Where all your book needs are met.</h2>
-    </div>
-
-    <div class="InputContainer">
-        <input placeholder="Search by Title" id="input" class="input" name="text">
-    </div>
+    
 
     <!-- <div class="container">
         <table class="clean-table">
