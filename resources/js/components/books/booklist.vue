@@ -5,12 +5,10 @@
     </div>
 
       <h1>Book List</h1>
-
       <div class="InputContainer">
         <input placeholder="Search by Id, Title, Description, Genre" id="input" class="input" v-model="searchQuery">
         <button @click="searchBooks" class="searchbtn">Search</button>
       </div>
-
       <div class="container">
         <table class="clean-table">
         <thead>
@@ -47,8 +45,7 @@
   export default {
     data() {
       return {
-        books: [],
-        searchQuery: ''
+        books: []
       };
     },
     mounted() {
@@ -63,11 +60,6 @@
           .catch(error => {
             console.error('Error fetching books:', error);
           });
-      },
-      searchBooks(){
-        axios.get(`http://127.0.0.1:8000/books/search?query=${this.searchQuery}`)
-            .then(response => {this.books = response.data.data;})
-            .catch(error => {console.error('Error searching books:', error);});
       }
     }
   };
