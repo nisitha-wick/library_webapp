@@ -1,7 +1,6 @@
 <template>
     <div>
         <div class="header">
-        <h1>Online Library</h1>
         <h2>Where all your book needs are met.</h2>
     </div>
 

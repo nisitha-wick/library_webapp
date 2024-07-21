@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import bookIndex from '../components/books/booklist.vue'
+import bookIndex from '../components/books/booklist.vue';
 
 const routes = [{
     path:'/',
