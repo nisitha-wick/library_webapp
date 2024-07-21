@@ -7,8 +7,8 @@
       <h1>Book List</h1>
 
       <div class="InputContainer">
-        <input placeholder="Search by Title" id="input" class="input" v-model="searchQuery">
-        <button @click="searchBooks">Search</button>
+        <input placeholder="Search by Id, Title, Description, Genre" id="input" class="input" v-model="searchQuery">
+        <button @click="searchBooks" class="searchbtn">Search</button>
       </div>
 
       <div class="container">
