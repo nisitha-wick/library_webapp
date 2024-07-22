@@ -95,7 +95,7 @@
         font-family: Poppins;
         font-size: 20px;
         color: rgb(237, 156, 131);
-        background-color: azure;
+        background-color: rgb(237, 200, 247);
         padding: 10px;
         border-radius: 14px
     }
