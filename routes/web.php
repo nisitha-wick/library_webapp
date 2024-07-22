@@ -6,7 +6,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('register');
 });
 
 Auth::routes();
