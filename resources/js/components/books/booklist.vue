@@ -13,7 +13,7 @@
             <th>Title</th>
             <th>Description</th>
             <th>Genre</th>
-            <th>Price</th>
+            <th>Price ($)</th>
             <th></th>
           </tr>
         </thead>

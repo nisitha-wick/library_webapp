@@ -19,7 +19,7 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
-<body>
+<body class="container">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -89,11 +89,37 @@
 
     nav{
         border-radius: 20px;
-        background : url('/public/book imgs/circles.jpg')
     }
 
     .navbar-brand {
         font-family: Poppins;
         font-size: 20px;
+        color: rgb(237, 156, 131);
+        background-color: azure;
+        padding: 10px;
+        border-radius: 14px
     }
+
+    .navbar {
+        width: 100%;
+        height: 10%;
+        --size: 30px; 
+        --color: #fefae0;
+
+        --l: var(--color) 20%, #0000 0;
+        --bg: 35%, #606c38 0 45%, var(--color) 0;
+        background: linear-gradient(45deg, var(--l) 45%, var(--color) 0 70%, #0000 0),
+            linear-gradient(-45deg, var(--l) var(--bg) 70%, #0000 0),
+            linear-gradient(45deg, var(--color) var(--bg));
+        background-size: var(--size) var(--size);
+    }
+
+    .nav-item{
+        color: rgb(237, 156, 131);
+        background-color: azure;
+        padding: 7px;
+        border-radius: 14px
+    }
+
+
 </style>
