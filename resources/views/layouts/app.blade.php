@@ -116,7 +116,7 @@
 
     .nav-item{
         color: rgb(237, 156, 131);
-        background-color: azure;
+        background-color: rgb(237, 200, 247);
         padding: 7px;
         border-radius: 14px
     }
