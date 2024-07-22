@@ -19,4 +19,5 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/books/{book}/borrow', [BorrowingController::class, 'borrow']);
     Route::post('/books/{book}/return', [BorrowingController::class, 'returnBook']);
+    Route::get('/books/borrowed', [BorrowingController::class, 'getBorrowedBooks']);
 });

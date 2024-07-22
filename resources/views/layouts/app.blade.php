@@ -81,3 +81,19 @@
     </div>
 </body>
 </html>
+
+<style>
+    body {
+        background-color: #F2E9E4;
+    }
+
+    nav{
+        border-radius: 20px;
+        background : url('/public/book imgs/circles.jpg')
+    }
+
+    .navbar-brand {
+        font-family: Poppins;
+        font-size: 20px;
+    }
+</style>
