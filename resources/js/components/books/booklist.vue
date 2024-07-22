@@ -2,7 +2,7 @@
   <div class="web_cont">
     <h1>Book List</h1>
     <div class="InputContainer">
-      <input class="input" placeholder="Search by Id, Title, Description, Genre" v-model="searchQuery">
+      <input class="input" placeholder="Search by ID, Title, Description, Genre" v-model="searchQuery">
       <button @click="searchBooks" class="searchbtn">Search</button>
     </div>
     <div class="container">

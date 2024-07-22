@@ -80,7 +80,7 @@ button:disabled {
 .pagebtn{
     
     background-color: #eeeeee;
-    border: none;
+    border: 1px solid rgb(80, 194, 239);
     padding: 10px;
     font-size: 10px;
     width: 6em;
