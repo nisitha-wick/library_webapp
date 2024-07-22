@@ -31,7 +31,7 @@
                 <td>{{ book.description }}</td>
                 <td>{{ book.genre }}</td>
                 <td>{{ book.price }}</td>
-                <td><button>Borrow</button></td>
+                <td><button @click="borrowBook(book.id)">Borrow</button></td>
             </tr>
         </tbody>
       </table>
@@ -40,27 +40,47 @@
   </template>
   
   <script>
-  import axios from 'axios';
-  
-  export default {
-    data() {
-      return {
-        books: []
-      };
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      books: [],
+      searchQuery: ''
+    };
+  },
+  mounted() {
+    this.fetchBooks();
+  },
+  methods: {
+    fetchBooks() {
+      axios.get('/books')
+        .then(response => {
+          this.books = response.data.data;
+        })
+        .catch(error => {
+          console.error('Error fetching books:', error);
+        });
     },
-    mounted() {
-      this.fetchBooks();
+    searchBooks() {
+      axios.get(`/books/search?query=${this.searchQuery}`)
+        .then(response => {
+          this.books = response.data.data;
+        })
+        .catch(error => {
+          console.error('Error searching books:', error);
+        });
     },
-    methods: {
-      fetchBooks() {
-        axios.get('http://127.0.0.1:8000/books')
-          .then(response => {
-            this.books = response.data.data;
-          })
-          .catch(error => {
-            console.error('Error fetching books:', error);
-          });
-      }
+    borrowBook(bookId){
+      axios.post(`/books/${bookId}/borrow`)
+      .then(response => {
+        alert('Book borrowed successfully!');
+      })
+      .catch(error => {
+        console.error('Error borrowing book:', error);
+        alert('Failed to borrow book. Please try again.');
+      });
     }
-  };
-  </script>
+  }
+};
+</script>
