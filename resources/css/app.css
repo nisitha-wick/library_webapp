@@ -22,6 +22,17 @@ h1{
     font-family: Poppins;
 }
 
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination span {
+    margin: 0 15px; 
+  }
+
 /* Button CSS */
 .searchbtn {
     margin-left: 20px;
@@ -60,7 +71,14 @@ button:disabled {
     color: rgb(80, 194, 239);
 }
 
+.searchbtn:hover:not(:disabled) {
+    background: rgb(80, 194, 239);
+    color: white;
+    text-shadow: 0 0.1rem #bcb4b4;
+}
+
 .pagebtn{
+    
     background-color: #eeeeee;
     border: none;
     padding: 10px;
@@ -69,6 +87,8 @@ button:disabled {
     border-radius: 12px;
     color: rgb(80, 194, 239);
     cursor: pointer;
+    margin: 0 10px;
+    padding: 5px 10px;
 }
 
 .pagebtn:hover:not(:disabled) {
@@ -77,11 +97,7 @@ button:disabled {
     text-shadow: 0 0.1rem #bcb4b4;
 }
 
-.searchbtn:hover:not(:disabled) {
-    background: rgb(80, 194, 239);
-    color: white;
-    text-shadow: 0 0.1rem #bcb4b4;
-}
+
 
 .returnbtn{
     color: #BA324F

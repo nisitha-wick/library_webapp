@@ -29,11 +29,16 @@
             <td>{{ book.price }}</td>
             <td>
               <button v-if="!book.is_borrowed" @click="borrowBook(book.id)">Borrow</button>
-              <button class = 'returnbtn' v-if="book.is_borrowed" @click="returnBook(book.id)">Return</button>
+              <button class='returnbtn' v-if="book.is_borrowed" @click="returnBook(book.id)">Return</button>
             </td>
           </tr>
         </tbody>
       </table>
+      <div class="pagination">
+        <button class="pagebtn" @click="goToPage(currentPage - 1)" :disabled="currentPage === 1">Previous</button>
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <button class="pagebtn" @click="goToPage(currentPage + 1)" :disabled="currentPage === totalPages">Next</button>
+      </div>
     </div>
   </div>
 </template>
@@ -46,33 +51,39 @@ export default {
     return {
       books: [],
       searchQuery: '',
-      borrowedBooks: []
+      borrowedBooks: [],
+      currentPage: 1,
+      totalPages: 1
     };
   },
   mounted() {
     this.fetchBooks();
   },
   methods: {
-    fetchBooks() {
-      axios.get('/books')
-      .then(response => {
-        this.borrowedBooks = response.data.borrowedBooks || [];
-        this.books = response.data.books.map(book => ({
-          ...book,
-          is_borrowed: this.checkIfBorrowed(book.id)
-        }));
-      })
-      .catch(error => {
-        console.error('Error fetching books:', error.response ? error.response.data : error.message);
-      });
+    fetchBooks(page = 1) {
+      axios.get(`/books?page=${page}`)
+        .then(response => {
+          this.borrowedBooks = response.data.borrowedBooks || [];
+          this.books = response.data.books.map(book => ({
+            ...book,
+            is_borrowed: this.checkIfBorrowed(book.id)
+          }));
+          this.currentPage = response.data.current_page;
+          this.totalPages = response.data.last_page;
+        })
+        .catch(error => {
+          console.error('Error fetching books:', error.response ? error.response.data : error.message);
+        });
     },
     searchBooks() {
-      axios.get(`/books/search?query=${this.searchQuery}`)
+      axios.get(`/books/search?query=${this.searchQuery}&page=${this.currentPage}`)
         .then(response => {
           this.books = response.data.data.map(book => ({
             ...book,
             is_borrowed: this.checkIfBorrowed(book.id)
           }));
+          this.currentPage = response.data.current_page;
+          this.totalPages = response.data.last_page;
         })
         .catch(error => {
           console.error('Error searching books:', error.response ? error.response.data : error.message);
@@ -82,7 +93,7 @@ export default {
       axios.post(`/books/${bookId}/borrow`)
         .then(response => {
           alert(response.data.message);
-          this.fetchBooks();
+          this.fetchBooks(this.currentPage); // Refresh books on the current page
         })
         .catch(error => {
           alert(error.response ? error.response.data.message : error.message);
@@ -93,7 +104,7 @@ export default {
       axios.post(`/books/${bookId}/return`)
         .then(response => {
           alert(response.data.message);
-          this.fetchBooks();
+          this.fetchBooks(this.currentPage); // Refresh books on the current page
         })
         .catch(error => {
           alert(error.response ? error.response.data.message : error.message);
@@ -101,11 +112,16 @@ export default {
         });
     },
     checkIfBorrowed(bookId) {
-    if (!this.borrowedBooks) {
-      return false;
+      if (!this.borrowedBooks) {
+        return false;
+      }
+      return this.borrowedBooks.includes(bookId);
+    },
+    goToPage(page) {
+      if (page < 1 || page > this.totalPages) return;
+      this.currentPage = page;
+      this.fetchBooks(page);
     }
-    return this.borrowedBooks.includes(bookId);
-  }
   }
 };
 </script>

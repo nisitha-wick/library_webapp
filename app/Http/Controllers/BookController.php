@@ -18,7 +18,6 @@ class BookController extends Controller
         return response()->json([
             'books' => $books->items(),
             'borrowedBooks' => $borrowedBooks,
-            'data' => $books->items(),
             'current_page' => $books->currentPage(),
             'last_page' => $books->lastPage(),
         ]);
@@ -28,6 +27,8 @@ class BookController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
+        $perPage = 10; // Number of books per page
+        $page = $request->input('page', 1);
 
         $books = Book::where('id', '=', $query)
             ->orWhere('title', 'like', "%$query%")
@@ -35,8 +36,12 @@ class BookController extends Controller
             ->orWhere('genre', 'like', "%$query%")
             ->orWhere('price', '=', $query)
             ->select('id', 'title', 'description', 'genre', 'price')
-            ->paginate(10);
+            ->paginate($perPage, ['*'], 'page', $page);
 
-        return response()->json($books);
+        return response()->json([
+            'data' => $books->items(),
+            'current_page' => $books->currentPage(),
+            'last_page' => $books->lastPage(),
+        ]);
     }
 }
