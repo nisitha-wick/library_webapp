@@ -7,3 +7,5 @@ This project is a Library Management System designed to allow users to browse bo
 2. Authentication is implemented using laravel/UI package and users must register and log in to borrow or return books.
 3. Pagination for books is set to 10 books per page.
 4. API routes are accessible at the specified endpoints and methods for borrowing, returning and searching books are function and handle requests properly.
+
+Locate the SQL export file in the repository, named librarydb.sql.
